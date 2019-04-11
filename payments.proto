@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package payments;
+
+service PaymentService {
+  rpc List (Empty) returns (PaymentList) {}
+  rpc Insert (Payment) returns (Empty) {}
+  rpc Get (PaymentIdRequest) returns (Payment) {}
+  rpc Destroy (PaymentIdRequest) returns (Empty) {}
+}
+
+message Empty {}
+
+message Payment {
+  int32 id = 1;
+  string description = 2;
+  int32 price = 3;
+}
+
+message PaymentList {
+  repeated Payment payments = 1;
+}
+
+message PaymentIdRequest {
+  int32 id = 1;
+}
